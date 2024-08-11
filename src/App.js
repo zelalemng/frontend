@@ -27,7 +27,7 @@ function App() {
                 <Route path="/OrderManagement" element={<OrderManagement /> } />
                 <Route path="/CategoryManagement" element={<CategoryManagement />} />
                 <Route path="/details" element={<Customer />} />
-                <Route path="/" element={<Navigate to="/dashboard" />} />
+                <Route path="/" element={<Navigate to="/login" />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
