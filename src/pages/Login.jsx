@@ -18,7 +18,7 @@ function Login() {
 
   useEffect(() => {
     if (user) {
-      navigate("/");
+      navigate("/dashboard");
       toast.success("Login Successfully");
     }
   });
