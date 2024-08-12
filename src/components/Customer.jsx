@@ -12,7 +12,7 @@ function Customer() {
     // Fetch orders data from API
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders`); // Replace with your actual API endpoint
+        const response = await axios.get(/api/orders); // Replace with your actual API endpoint
         setOrders(response.data);
       } catch (error) {
         console.error('Error fetching orders:', error);
