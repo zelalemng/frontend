@@ -53,7 +53,7 @@ function Login() {
     }
 
     if (data) {
-      navigate("/");
+      navigate("/dashboard");
       toast.success("Login Successfully");
     }
   };
