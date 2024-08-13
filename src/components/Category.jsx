@@ -14,13 +14,8 @@ const CategoryManagement = () => {
   });
   
   const fetchCategories = async () => {
-    const token = localStorage.getItem('authToken');
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/categories`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
     
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/categories`);
     setCategories(response.data);
   };
 
