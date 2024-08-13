@@ -20,7 +20,7 @@ function App() {
       {isAuthenticated ? (
         <div className="flex">
           <Sidebar />
-          <div className="flex-grow bg-gray-100">
+          <div className="flex-grow bg-gray-300">
             
             <div className="p-4">
               <Routes>
@@ -40,7 +40,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to="/login" />} />
         </Routes>
         
       )}
