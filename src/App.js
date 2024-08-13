@@ -20,7 +20,7 @@ function App() {
       {isAuthenticated ? (
         <div className="flex">
           <Sidebar />
-          <div className="flex-grow bg-gray-300">
+          <div className="flex-grow bg-gray-100">
             
             <div className="p-4">
               <Routes>
