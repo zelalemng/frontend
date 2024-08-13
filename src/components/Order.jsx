@@ -17,13 +17,9 @@ const OrderManagement = () => {
 
   const fetchOrders = async () => {
     try {
-      const token = localStorage.getItem('authToken');
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      setOrders(response.data);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders`);
+      setOrders(response.data);  
+  
     } catch (error) {
       console.error('Error fetching orders:', error);
     }
