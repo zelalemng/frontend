@@ -39,7 +39,8 @@ const OrderManagement = () => {
     fetchCategories();
   }, []);
 
-  const handleOrderSubmit = async () => {
+  const handleOrderSubmit = async (e) => {
+    e.preventDefault();
     if (editingOrder) {
       await axios.put(`${process.env.REACT_APP_API_URL}/api/orders/${editingOrder._id}`, formValues);
     } else {
