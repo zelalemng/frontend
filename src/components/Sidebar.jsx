@@ -218,7 +218,10 @@ const Sidebar = () => {
               <FaUser className="mr-2" /> Register
             </Link>
           </button>
-          <div className='text-white py-40 px-1'>
+            <Link className="flex items-center py-6 hover:bg-green-500 justify-center rounded-lg " to="/customerpage">
+              <FaSignOutAlt /><span className='font-bold'>Click here! <br />Check Order Status</span>
+          </Link>
+          <div className='text-white px-1'>
             <span className='font-bold py-3 '>Phone : +2519******</span>
             <br />
             <span className='font-bold py-3'>Email : xxx@gmail.com</span>
