@@ -15,7 +15,7 @@ const CustomerPage = () => {
     setError('');
     setOrderDetails(null);
     try {
-      const response = await axios.get(`/api/orders/${orderId}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders/${orderId}`);
       setOrderDetails(response.data);
     } catch (err) {
       setError('Order not found or invalid order ID.');
