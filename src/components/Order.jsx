@@ -147,17 +147,7 @@ const OrderManagement = () => {
           <div className="bg-white p-6 rounded shadow-md w-full max-w-md mx-auto">
             <h2 className="text-lg font-bold mb-4">{editingOrder ? "Edit Order" : "Add New Order"}</h2>
             <form onSubmit={handleOrderSubmit}>
-              <div className="mb-4">
-                <label className="block text-gray-700">Order ID</label>
-                <input
-                  type="text"
-                  name="order_id"
-                  value={formValues.order_id}
-                  onChange={handleInputChange}
-                  className="w-full p-2 border border-gray-300 rounded"
-                  required
-                />
-              </div>
+              
 
               <div className="mb-4">
                 <label className="block text-gray-700">Category</label>
