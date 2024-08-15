@@ -10,6 +10,7 @@ import CategoryManagement from './components/Category';
 import Customer from "./components/Customer";
 import Login from './pages/Login'; // Assuming you have a Login page
 import Register from './pages/Register'; // Assuming you have a Register page
+import CustomerPage from './pages/customerpage';
 import 'tailwindcss/tailwind.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path='/customerpage' element={<CustomerPage />} />
               </Routes>
             </div>
             
