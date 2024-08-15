@@ -39,8 +39,21 @@ const OrderManagement = () => {
     fetchCategories();
   }, []);
 
+  const generateOrderId = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let randomId = 'CK-';
+    for (let i = 0; i < 5; i++) {
+      randomId += characters.charAt(Math.random(i) * characters.length);
+    }
+    return randomId;
+  };
+
   const handleOrderSubmit = async (e) => {
     e.preventDefault();
+    //const orderData = { ...formValues };
+    if (!formValues.order_id) {
+      formValues.order_id = generateOrderId();
+    }
     if (editingOrder) {
       await axios.put(`${process.env.REACT_APP_API_URL}/api/orders/${editingOrder._id}`, formValues);
     } else {
