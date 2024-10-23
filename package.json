@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "proxy": "https://agentpro.onrender.com/",
   "private": true,
+  "name": "update-browserslist-db",
+  "version": "1.1.1",
+  "description": "CLI tool to update caniuse-lite to refresh target browsers from Browserslist config",
+  "keywords": [
+    "caniuse",
+    "browsers",
+    "target"
+  ],
   "dependencies": {
     "@fvilers/disable-react-devtools": "^1.3.0",
     "@testing-library/jest-dom": "^5.16.5",
