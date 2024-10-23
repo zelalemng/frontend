@@ -109,14 +109,7 @@ const RedirectAuthenticatedUser = ({ children }) => {
 	return children;
 };
 function App() {
-  const userType = 'Admin';
-  const { isCheckingAuth, checkAuth } = useAuthStore();
-
-	useEffect(() => {
-		checkAuth();
-	}, [checkAuth]);
-
-	if (isCheckingAuth) return <Spinner />;
+  
   
 
   return (
