@@ -64,14 +64,14 @@ import CategoryManagement from './components/Category';
 import Customer from "./components/Customer";
 import Login from './pages/Login'; 
 import Register from './pages/Register'; 
-import MultipleFileUpload from './components/upload';
+
 import 'tailwindcss/tailwind.css';
-import Protected from './components/ProtectionRoutes';
+
 import CustomerPage from './pages/customerpage';
 import Hero from './pages/Hero';
 import FloatingShape from "./components/FloatingShape";
 import AddServicePage from "./components/service";
-import ImageUpload from './components/upload';
+
 import EmailVerificationPage from './pages/EmailVerificationPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
@@ -79,7 +79,7 @@ import { useAuthStore } from "./store/authStore";
 import Spinner from "./components/Spinner";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import CustomerDashboard from './pages/customerDashboard';
+;
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from 'jwt-decode';
@@ -134,12 +134,12 @@ function App() {
         <Routes>
           <>
           
-            <Route path="/" element={<Hero />} />
+              <Route path="/" element={<Hero />} />
               
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/customerdas" element={<CustomerDashboard />} />
-              <Route path="/images" element={<ImageUpload />} />
+              
               <Route path="/verify-email" element={<RedirectAuthenticatedUser><EmailVerificationPage /></RedirectAuthenticatedUser>} />
               <Route path="/forgot-password" element={<RedirectAuthenticatedUser><ForgotPasswordPage /></RedirectAuthenticatedUser>} />
               <Route path="/reset-password/:token" element={<RedirectAuthenticatedUser><ResetPasswordPage /></RedirectAuthenticatedUser>} />
