@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_URL = "https://agentpro.onrender.com/api/users";
+//const API_URL = "https://agentpro.onrender.com/api/users";
 
 axios.defaults.withCredentials = true;
 
@@ -62,10 +62,10 @@ export const useAuthStore = create((set) => ({
 		}
 	},
 	checkAuth: async () => {
-		set({ isCheckingAuth: false, error: null });
+		set({ isCheckingAuth: true, error: null });
 		try {
 			const response = await axios.get(`${process.env.REACT_APP_API_URL}/check-auth`);
-			set({ user: response.data.user, isAuthenticated: false, isCheckingAuth: false });
+			set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false });
 		} catch (error) {
 			set({ error: null, isCheckingAuth: false, isAuthenticated: false });
 		}
