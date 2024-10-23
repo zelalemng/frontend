@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_URL = "/api/users";
+const API_URL = "https://agentpro.onrender.com/api/users";
 
 axios.defaults.withCredentials = true;
 
