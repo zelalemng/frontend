@@ -79,8 +79,6 @@ import { useAuthStore } from "./store/authStore";
 import Spinner from "./components/Spinner";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-;
-import jwt_decode from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from 'jwt-decode';
 
