@@ -16,7 +16,7 @@ export const useAuthStore = create((set) => ({
 	signup: async (email, password, name, phone) => {
 		set({ isLoading: true, error: null });
 		try {
-			const response = await axios.post(`${process.env.REACT_APP_API_URL}/signup`, { email, password, name, phone});
+			const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/users` + 'signup', { email, password, name, phone});
 			set({ user: response.data.user, isAuthenticated: true, isLoading: false });
 			
 		} catch (error) {
@@ -27,7 +27,7 @@ export const useAuthStore = create((set) => ({
 	login: async (email, password, name) => {
 		set({ isLoading: true, error: null });
 		try {
-			const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, { email, password, name });
+			const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/users` + 'login', { email, password, name });
 			set({
 				isAuthenticated: true,
 				user: response.data.user,
@@ -43,7 +43,7 @@ export const useAuthStore = create((set) => ({
 	logout: async () => {
 		set({ isLoading: true, error: null });
 		try {
-			await axios.post(`${process.env.REACT_APP_API_URL}/logout`);
+			await axios.post(`${process.env.REACT_APP_API_URL}/api/users` + 'logout');
 			set({ user: null, isAuthenticated: false, error: null, isLoading: false });
 		} catch (error) {
 			set({ error: "Error logging out", isLoading: false });
@@ -53,7 +53,7 @@ export const useAuthStore = create((set) => ({
 	verifyEmail: async (code) => {
 		set({ isLoading: true, error: null });
 		try {
-			const response = await axios.post(`${process.env.REACT_APP_API_URL}/verify-email`, { code });
+			const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/users` + 'verify-email', { code });
 			set({ user: response.data.user, isAuthenticated: true, isLoading: false });
 			return response.data;
 		} catch (error) {
