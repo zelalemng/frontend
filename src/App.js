@@ -124,16 +124,16 @@ function App() {
       
       <div className='min-h-screen bg-gradient-to-br
         from-gray-900 via-green-900 to-emerald-900 relative overflow-hidden'>
-        <FloatingShape color='bg-green-500' size='w-64 h-64' top='-5%' left='10%' delay={0} />
+        		<FloatingShape color='bg-green-500' size='w-64 h-64' top='-5%' left='10%' delay={0} />
 			  <FloatingShape color='bg-emerald-500' size='w-48 h-48' top='70%' left='80%' delay={5} />
 			  <FloatingShape color='bg-lime-500' size='w-32 h-32' top='40%' left='-10%' delay={2} />
         <ToastContainer />
         <Routes>
           <>
           
-              <Route path="/login" element={<Hero />} />
+              <Route path="/" element={<Hero />} />
               
-              <Route path="/" element={<Login />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               
               
@@ -228,7 +228,7 @@ function App() {
           </Routes>
           <Toaster />
       </div>
-    
+
   );
 }
 export default App;
