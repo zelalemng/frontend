@@ -13,7 +13,7 @@ function Customer() {
     // Fetch orders data from API
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`https://agentpro-api.onrender.com/api/orders`); // Replace with your actual API endpoint
+        const response = await axios.get(`$/api/orders`); // Replace with your actual API endpoint
         setOrders(response.data);
       } catch (error) {
         console.error('Error fetching orders:', error);
@@ -141,7 +141,7 @@ function Customer() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`https://agentpro-api.onrender.com/api/users`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users`);
         setUsers(response.data);
         setFilteredUsers(response.data);
       } catch (err) {
@@ -172,7 +172,7 @@ function Customer() {
   };
   const handleSave = async () => {
     try {
-      await axios.put(`https://agentpro-api.onrender.com/api/users/${currentUser._id}`, editFormData);
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/users/${currentUser._id}`, editFormData);
       setUsers(users.map(user => user._id === currentUser._id ? { ...user, ...editFormData } : user));
       setIsEditMode(false);
       setCurrentUser(null);
