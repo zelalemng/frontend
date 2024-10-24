@@ -188,9 +188,9 @@ const CategoryManagement = () => {
   const handleFinish = async (e) => {
     e.preventDefault();
     if (editingCategory) {
-      await axios.put(`/api/categories/${editingCategory._id}`, formValues);
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/categories/${editingCategory._id}`, formValues);
     } else {
-      await axios.post('/api/categories', formValues);
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/categories/`, formValues);
     }
     fetchCategories();
     closePopup();
@@ -198,7 +198,7 @@ const CategoryManagement = () => {
   const fetchCategories = async () => {
     try{
 
-      const response = await axios.get('/api/categories');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/categories`);
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching orders:', error);
@@ -211,7 +211,7 @@ const CategoryManagement = () => {
     fetchCategories();
   }, []);
   const handleDeleteCategory = async (category) => {
-    await axios.delete(`/api/categories/${category._id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/api/categories/${category._id}`);
     fetchCategories();
   };
   const openPopup = (category = null) => {
