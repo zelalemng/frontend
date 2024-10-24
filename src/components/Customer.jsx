@@ -149,7 +149,7 @@ function Customer() {
       } finally {
         setLoading(false);
       }
-    }
+    
     };
 
     fetchUsers();
