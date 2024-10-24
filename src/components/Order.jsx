@@ -1,3 +1,4 @@
+/**
 import React, { useState, useEffect } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import axios from 'axios';
@@ -218,3 +219,274 @@ const OrderManagement = () => {
 };
 
 export default OrderManagement;
+**/
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import PopupModal from './PopupModal';
+import ViewModal from './ViewModal';
+import { AiOutlinePlus, AiFillEdit, AiOutlineMinus, AiFillDelete, AiOutlineEye } from 'react-icons/ai';
+import Spinner from "../components/Spinner";
+
+const OrderManagement = () => {
+  const [orders, setOrders] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [popupModal, setPopupModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [services, setServices] = useState([]);
+  const [filteredServices, setFilteredServices] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [formValues, setFormValues] = useState({
+    order_id: '',
+    category_id: '',
+    
+    order_description: '',
+    order_status: '',
+    name: '',
+    serviceName: '',
+    order_price: 0,
+  });
+  const [viewingOrder, setViewingOrder] = useState(null);
+  const [editingOrder, setEditingOrder] = useState(false);
+  
+  const itemsPerPage = 10;
+  
+  // Fetch data on initial render
+  useEffect(() => {
+    fetchOrders();
+    fetchUsers();
+    fetchCategories();
+    
+    fetchServices();
+    
+  }, []);
+  
+
+ 
+  
+
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders`);
+      setOrders(response.data);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+    } finally {
+      setLoading(false);
+    }
+  
+  };
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/services`);  // Your API to fetch services
+      setServices(response.data);
+    } catch (error) {
+      console.error('Error fetching services:', error);
+    }
+  };
+
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users`);
+      setUsers(response.data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/categories`);
+      setCategories(response.data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+  
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    const selectedCategoryId = event.target.value;
+    setSelectedCategory(selectedCategoryId);
+
+    // Filter services by selected category
+    const filtered = services.filter(service => service.categoryId === selectedCategoryId);
+    setFilteredServices(filtered);
+    setFormValues((currentValues) => ({
+      ...currentValues,
+      [name]: value,
+    }));
+    
+  };
+  
+  const generateOrderId = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let randomId = 'CK-';
+    for (let i = 0; i < 5; i++) {
+      randomId += characters.charAt(Math.random(i) * characters.length);
+    }
+    return randomId;
+  };
+
+  const handleOrderSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formValues);
+    if (!formValues.order_id) {
+      formValues.order_id = generateOrderId();
+    }
+    if (editingOrder) {
+      try {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/orders${formValues.order_id}`, formValues);
+        setEditingOrder(false);
+      } catch (error) {
+        console.error('Error updating order:', error);
+      }
+    } else {
+      try {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/orders`, formValues);
+      } catch (error) {
+        console.error('Error creating order:', error);
+      }
+    }
+    setPopupModal(false);
+    fetchOrders();
+  };
+
+  const handleEditOrder = (order) => {
+    setFormValues(order);
+    setEditingOrder(true);
+    setPopupModal(true);
+  };
+  if (loading) {
+    return <Spinner />;
+  }
+
+  const handleViewOrder = (order) => {
+    setViewingOrder(order);
+    setViewModal(true);
+  };
+
+  const paginatedOrders = orders.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  const handleDeleteOrder = async (orderId) => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/orders${orderId}`);
+      fetchOrders();
+    } catch (error) {
+      console.error('Error deleting order:', error);
+    }
+  };
+
+  return (
+    <div className="container mx-auto md:px-2 lg:px-6 p-4">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-bold mb-4">Order Management</h1>
+
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          onClick={() => {
+            setFormValues({
+              order_id: '',
+              category_id: '',
+              category_type: '',
+              order_description: '',
+              order_status: '',
+              name: '',
+              serviceName: '',
+              order_price: 0,
+            });
+            setEditingOrder(false);
+            setPopupModal(true);
+          }}
+        >
+          <AiOutlinePlus />
+        </button>
+      </div>
+
+      <table className="table-auto w-full p-2 md:px-12 lg:px-6 text-black text-left border-collapse border border-gray-200 bg-white rounded-md shadow">
+        <thead>
+          <tr>
+            
+            <th className="py-2 px-4 border">Name</th>
+            <th className="py-2 px-4 border">Category Type</th>
+            <th className="py-2 px-4 border">Description</th>
+            <th className="py-2 px-4 border">Status</th>
+            <th className="py-2 px-4 border">Price</th>
+            <th className="py-2 px-4 border">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {paginatedOrders.map(order => (
+            <tr key={order.order_id}>
+              
+              <td className="py-2 px-3 border">{order.name?.name || 'Unknown'}</td>
+              <td className="py-2 px-3 border">{order.category_type}</td>
+              <td className="py-2 px-3 text-sm border">{order.order_description}</td>
+              <td className="py-2 px-3 border">{order.order_status}</td>
+              <td className="py-2 px-3 border">{order.order_price} birr</td>
+              <td className="py-2 px-3 border">
+                <div className="flex items-center space-x-2">
+                  <button className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={() => handleEditOrder(order)}>
+                    <AiFillEdit />
+                  </button>
+                  <button className="p-2 bg-red-500 text-white rounded hover:bg-red-600" onClick={() => handleDeleteOrder(order.order_id)}>
+                    <AiFillDelete />
+                  </button>
+                  <button className="p-2 bg-gray-600 text-white rounded hover:bg-gray-700" onClick={() => handleViewOrder(order)}>
+                    <AiOutlineEye />
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <div className="flex justify-between mt-4 items-center">
+        <span className="text-sm text-gray-300">Page {currentPage} of {Math.ceil(orders.length / itemsPerPage)}</span>
+        <div className="flex space-x-2">
+          <button
+            className="px-3 py-1 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            Prev
+          </button>
+          <button
+            className="px-3 py-1 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, Math.ceil(orders.length / itemsPerPage)))}
+            disabled={currentPage === Math.ceil(orders.length / itemsPerPage)}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+
+      <PopupModal
+        isOpen={popupModal}
+        onClose={() => setPopupModal(false)}
+        onSubmit={handleOrderSubmit}
+        formValues={formValues}
+        handleInputChange={handleInputChange}
+        editingOrder={editingOrder}
+        users={users}
+        services={services}
+        categories={categories}
+        filteredServices={filteredServices}
+        
+      />
+
+      <ViewModal
+        isOpen={viewModal}
+        onClose={() => setViewModal(false)}
+        viewingOrder={viewingOrder}
+      />
+    </div>
+  );
+};
+
+export default OrderManagement;
+
