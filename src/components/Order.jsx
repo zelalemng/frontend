@@ -339,7 +339,7 @@ const OrderManagement = () => {
     }
     if (editingOrder) {
       try {
-        await axios.put(`${process.env.REACT_APP_API_URL}/api/orders${formValues.order_id}`, formValues);
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/orders/${formValues.order_id}`, formValues);
         setEditingOrder(false);
       } catch (error) {
         console.error('Error updating order:', error);
@@ -373,7 +373,7 @@ const OrderManagement = () => {
 
   const handleDeleteOrder = async (orderId) => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/orders${orderId}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/orders/${orderId}`);
       fetchOrders();
     } catch (error) {
       console.error('Error deleting order:', error);
