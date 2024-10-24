@@ -78,7 +78,7 @@ const AddServicePage = () => {
   const paginatedOrders = services.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
   const fetchServices = async () => {
     try {
-      const response = await axios.get('/api/services');
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/services`);
       setServices(response.data);
     } catch (error) {
       console.error('Error fetching services:', error);
@@ -88,7 +88,7 @@ const AddServicePage = () => {
   // Function to fetch services from backend
   const addService = async (newService) => {
     try {
-      const response = await axios.post('/api/services', newService);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/services`, newService);
       setServices((prevServices) => [...prevServices, response.data]);
     } catch (error) {
       console.error('Error adding service:', error);
