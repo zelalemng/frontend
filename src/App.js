@@ -92,7 +92,7 @@ const ProtectedRoute = ({ children }) => {
 	}
 
 	if (!user.isVerified) {
-		return <Navigate to='/' replace />;
+		return <Navigate to='/verify-email' replace />;
 	}
 
 	return children;
@@ -109,17 +109,17 @@ const RedirectAuthenticatedUser = ({ children }) => {
 	return children;
 };
 function App() {
-  
-  
-
-  return (
-    const { isCheckingAuth, checkAuth } = useAuthStore();
+  const { isCheckingAuth, checkAuth } = useAuthStore();
 
 	useEffect(() => {
 		checkAuth();
 	}, [checkAuth]);
 
 	if (isCheckingAuth) return <Spinner />;
+  
+
+  return (
+    
       
       
       <div className='min-h-screen bg-gradient-to-br
