@@ -100,9 +100,10 @@ const HeroPage = () => {
         <h1 className="text-3xl font-bold text-gray-500 mb-4">Welcome to Wanco Agent</h1>
         <p className="text-xl text-gray-500 mb-8">"All time we are Ready"</p>
         <div>
-          <a href="/login" className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600">
-            Apply
-          </a>
+          <Link to="/login" className="text-green-400 bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600">
+							Apply
+					</Link>
+          
         </div>
       </div>
     </div>
