@@ -113,7 +113,13 @@ function App() {
   
 
   return (
-    
+    const { isCheckingAuth, checkAuth } = useAuthStore();
+
+	useEffect(() => {
+		checkAuth();
+	}, [checkAuth]);
+
+	if (isCheckingAuth) return <Spinner />;
       
       
       <div className='min-h-screen bg-gradient-to-br
