@@ -88,7 +88,7 @@ const ProtectedRoute = ({ children }) => {
 	const { isAuthenticated, user } = useAuthStore();
 
 	if (!isAuthenticated) {
-		return <Navigate to='/login' replace />;
+		return <Navigate to='/' replace />;
 	}
 
 	if (!user.isVerified) {
