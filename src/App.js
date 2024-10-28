@@ -71,7 +71,7 @@ import CustomerPage from './pages/customerpage';
 import Hero from './pages/Hero';
 import FloatingShape from "./components/FloatingShape";
 import AddServicePage from "./components/service";
-
+import PaymentCalculator from "./components/payment";
 import EmailVerificationPage from './pages/EmailVerificationPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
@@ -192,6 +192,19 @@ function App() {
                     
                   } 
                 />
+		<Route 
+                  path="/pay" 
+                  element={
+                    <ProtectedRoute>
+                    <Sidebar>
+                      <Layout>
+                      <PaymentCalculator />
+                      </Layout>
+                    </Sidebar>
+                  </ProtectedRoute>
+                    
+                  } 
+                />
 
                 <Route 
                   path="/OrderManagement" 
@@ -207,8 +220,7 @@ function App() {
                   } 
                 />
 
-                
-
+				       
                 <Route 
                   path="/details" 
                   element={
