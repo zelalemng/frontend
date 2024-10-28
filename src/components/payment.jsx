@@ -10,7 +10,7 @@ const DisplaySummaries = () => {
   useEffect(() => {
     const fetchPaymentSummaries = async () => {
       try {
-        const response = await axios.get('/api/orders');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders`);
         const orders = response.data;
 
         // Calculate partial and full payments sums
