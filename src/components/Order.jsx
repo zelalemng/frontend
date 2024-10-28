@@ -643,18 +643,20 @@ const OrderManagement = () => {
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold mb-4">Order List</h1>
-        <input
-          type="text"
-          placeholder="Search by name or service"
-          value={searchTerm}
-          onChange={handleSearch}
-          className="p-2 border rounded w-full md:w-80"
-        />
-          <span className="absolute right-2 top-3 text-gray-500">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.415 1.415l-4.387-4.387zM8 14a6 6 0 100-12 6 6 0 000 12z" clipRule="evenodd" />
-            </svg>
-          </span>
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search by name or service"
+            value={searchTerm}
+            onChange={handleSearch}
+            className="p-2 border rounded w-full md:w-80"
+          />
+            <span className="absolute right-2 top-3 text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.415 1.415l-4.387-4.387zM8 14a6 6 0 100-12 6 6 0 000 12z" clipRule="evenodd" />
+              </svg>
+            </span>
+          </div>
         <button
           className="px-4 py-2 bg-blue-500 text-white rounded"
           onClick={() => {
