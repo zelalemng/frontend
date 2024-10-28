@@ -1,6 +1,6 @@
-import { AiOutlineHome, AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineShoppingCart, AiOutlineDollar, AiOutlinePicRight } from 'react-icons/ai';
 import { FaUser } from "react-icons/fa";
-import { FiBox, FiLogOut } from 'react-icons/fi';
+import { FiBox, FiLogOut, FiPocket } from 'react-icons/fi';
 const menu = [
   {
     title: "Dashboard",
@@ -15,12 +15,17 @@ const menu = [
       {
         title: "Category",
         path: "/CategoryManagement",
-        icon: <AiOutlineHome />,
+        icon: <AiOutlinePicRight />,
       },
       {
         title: "Service",
         path: "/service",
-        icon: <AiOutlineHome />,
+        icon: <FiPocket />,
+      },
+      {
+        title: "Payments",
+        path: "/pay",
+        icon: <AiOutlineDollar  />,
       }
     ]
   },
