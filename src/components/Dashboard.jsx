@@ -236,7 +236,7 @@ const Dashboard = () => {
       <h1 className="text-2xl font-bold text-white mb-6 text-center">Dashboard</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
         {/* Order Card */}
-        <div className=" p-6 rounded-lg shadow-lg bg-gray-300 bg-opacity-50 transform transition-transform hover:scale-105">
+        <div className=" p-2 rounded-lg shadow-lg bg-gray-300 bg-opacity-50 transform transition-transform hover:scale-105">
           <h2 className="text-xl font-bold text-center mb-4 text-gray-100">Total Orders</h2>
           <p className="text-5xl font-bold text-blue-500">{orderCount}</p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-4">
@@ -260,7 +260,7 @@ const Dashboard = () => {
         </div>
 
         {/* Category Card */}
-        <div className=" p-6 rounded-lg shadow-lg bg-gray-100 bg-opacity-50 transform transition-transform hover:scale-105">
+        <div className=" p-2 rounded-lg shadow-lg bg-gray-100 bg-opacity-50 transform transition-transform hover:scale-105">
           <h2 className="text-xl font-bold text-center mb-4 text-gray-100">Total Categories</h2>
           <p className="text-5xl font-bold text-green-500">{categoryCount}</p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-4">
@@ -276,7 +276,7 @@ const Dashboard = () => {
         </div>
 
         {/* Payment Card */}
-        <div className=" p-6 rounded-lg shadow-lg bg-gray-300 bg-opacity-50 transform transition-transform hover:scale-105">
+        <div className=" p-2 rounded-lg shadow-lg bg-gray-300 bg-opacity-50 transform transition-transform hover:scale-105">
           <h2 className="text-xl font-bold text-center mb-4 text-center text-gray-100">Payments</h2>
           <p className="text-5xl font-bold text-purple-500">{paymentCount}</p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-4">
